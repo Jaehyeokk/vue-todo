@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app-todo">
     <TodoHeader></TodoHeader> 
     <TodoInput></TodoInput> 
     <TodoList></TodoList> 
@@ -8,22 +8,33 @@
 </template>
 
 <script>
+import './assets/css/reset.css'
+import './assets/css/common.css'
+
 import TodoHeader from './components/TodoHeader'
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
 import TodoFooter from './components/TodoFooter'
+
+
 export default {
   name: 'app',
   components: {
-    'TodoHeader': TodoHeader,
-    'TodoInput': TodoInput,
-    'TodoList': TodoList,
-    'TodoFooter': TodoFooter,
+    TodoHeader: TodoHeader,
+    TodoInput: TodoInput,
+    TodoList: TodoList,
+    TodoFooter: TodoFooter,
   }
 
 }
 </script>
 
-<style>
-
+<style scoped>
+  #app-todo {
+    max-width: 600px;
+    margin: 100px auto 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #eee;
+  }
 </style>
