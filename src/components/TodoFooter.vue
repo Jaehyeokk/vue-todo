@@ -1,6 +1,8 @@
 <template>
   <div class="todo-footer-wrap container">
-    <button class="clear-all-btn" type="button" v-on:click="clearItems">Clear All</button>
+    <button class="clear-all-btn" type="button" v-on:click="clearItems">
+      Clear All
+    </button>
   </div>
 </template>
 
@@ -8,18 +10,18 @@
 export default {
   methods: {
     clearItems: function() {
-      localStorage.clear()
-    }
-  }
-}
+      this.$emit("clearItems");
+    },
+  },
+};
 </script>
 
 <style>
-  .todo-footer-wrap {
-    width: 300px;
-    margin: 0 auto;
-  }
-  .clear-all-btn {
-    width: 100%;
-  }
+.todo-footer-wrap {
+  width: 300px;
+  margin: 0 auto;
+}
+.clear-all-btn {
+  width: 100%;
+}
 </style>
