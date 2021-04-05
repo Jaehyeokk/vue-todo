@@ -1,29 +1,32 @@
 <template>
   <div>
-    <TodoHeader></TodoHeader> 
-    <TodoInput></TodoInput> 
-    <TodoList></TodoList> 
-    <TodoFooter></TodoFooter> 
+    <TodoHeader></TodoHeader>
+    <TodoDate></TodoDate>
+    <TodoInput></TodoInput>
+    <TodoList></TodoList>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
 <script>
-import TodoHeader from './components/TodoHeader'
-import TodoInput from './components/TodoInput'
-import TodoList from './components/TodoList'
-import TodoFooter from './components/TodoFooter'
+import TodoHeader from "./components/TodoHeader";
+import TodoDate from "./components/TodoDate";
+import TodoInput from "./components/TodoInput";
+import TodoList from "./components/TodoList";
+import TodoFooter from "./components/TodoFooter";
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    'TodoHeader': TodoHeader,
-    'TodoInput': TodoInput,
-    'TodoList': TodoList,
-    'TodoFooter': TodoFooter,
-  }
-
-}
+    TodoHeader,
+    TodoDate,
+    TodoInput,
+    TodoList,
+    TodoFooter,
+  },
+  data() {
+    return {};
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
