@@ -23,10 +23,10 @@ import TodoFooter from "./components/TodoFooter";
 export default {
   name: "app",
   components: {
-    TodoHeader: TodoHeader,
-    TodoInput: TodoInput,
-    TodoList: TodoList,
-    TodoFooter: TodoFooter,
+    TodoHeader,
+    TodoInput,
+    TodoList,
+    TodoFooter,
   },
   created() {
     if (localStorage.length > 0) {
