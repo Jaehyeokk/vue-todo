@@ -26,14 +26,14 @@ export default {
   components: {
     Modal: Modal,
   },
-  data: function() {
+  data() {
     return {
       todo_input: "",
       showModal: false,
     };
   },
   methods: {
-    addTodoItem: function() {
+    addTodoItem() {
       if (this.todo_input !== "") {
         this.$emit("addTodoItem", this.todo_input);
         this.clearInput();
@@ -41,7 +41,7 @@ export default {
         alert("type something");
       }
     },
-    clearInput: function() {
+    clearInput() {
       this.todo_input = "";
     },
   },

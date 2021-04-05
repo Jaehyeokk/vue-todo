@@ -9,7 +9,7 @@
 <script>
 export default {
   methods: {
-    clearItems: function() {
+    clearItems() {
       this.$emit("clearItems");
     },
   },

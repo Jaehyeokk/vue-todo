@@ -19,10 +19,10 @@
 export default {
   props: ["propsData"],
   methods: {
-    removeItem: function(todoItem, index) {
+    removeItem(todoItem, index) {
       this.$emit("removeTodoItem", todoItem, index);
     },
-    toggleTodoItem: function(index) {
+    toggleTodoItem(index) {
       this.$emit("checkTodoItem", index);
     },
   },
