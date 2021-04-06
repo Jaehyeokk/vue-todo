@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="todo-app">
     <TodoHeader></TodoHeader>
     <TodoDate></TodoDate>
     <TodoInput></TodoInput>
@@ -9,6 +9,12 @@
 </template>
 
 <script>
+// CSS
+import "./assets/css/reset.css";
+import "./assets/css/common.css";
+import "element-ui/lib/theme-chalk/index.css";
+import "./assets/css/element-ui.css";
+// Components
 import TodoHeader from "./components/TodoHeader";
 import TodoDate from "./components/TodoDate";
 import TodoInput from "./components/TodoInput";
@@ -29,4 +35,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.todo-app {
+  width: 360px;
+  border-radius: 5px;
+  background-color: #3b424a;
+}
+</style>
