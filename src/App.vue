@@ -1,9 +1,8 @@
 <template>
   <div id="app-todo">
     <TodoHeader></TodoHeader>
-    <TodoInput v-on:addTodoItem="addTodo"></TodoInput>
+    <TodoInput></TodoInput>
     <TodoList
-      v-bind:propsData="todo_items"
       v-on:removeTodoItem="removeTodoItem"
       v-on:checkTodoItem="checkTodoItem"
     ></TodoList>
@@ -28,28 +27,12 @@ export default {
     TodoList,
     TodoFooter,
   },
-  created() {
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
-          this.todo_items.push(
-            JSON.parse(localStorage.getItem(localStorage.key(i)))
-          );
-        }
-      }
-    }
-  },
   data() {
     return {
       todo_items: [],
     };
   },
   methods: {
-    addTodo(todo_input) {
-      const obj = { completed: false, item: todo_input };
-      localStorage.setItem(todo_input, JSON.stringify(obj));
-      this.todo_items.push(obj);
-    },
     removeTodoItem(todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todo_items.splice(index, 1);

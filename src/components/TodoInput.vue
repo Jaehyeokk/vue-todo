@@ -7,10 +7,7 @@
         v-model="todo_input"
         v-on:keyup.enter="addTodoItem"
       />
-      <button
-        class="todo-input-btn"
-        v-on:click="addTodoItem, (showModal = true)"
-      >
+      <button class="todo-input-btn" v-on:click="addTodoItem">
         Add
       </button>
     </div>
@@ -35,7 +32,8 @@ export default {
   methods: {
     addTodoItem() {
       if (this.todo_input !== "") {
-        this.$emit("addTodoItem", this.todo_input);
+        const obj = { completed: false, item: this.todo_input };
+        this.$store.commit("addTodoItem", obj);
         this.clearInput();
       } else {
         alert("type something");
