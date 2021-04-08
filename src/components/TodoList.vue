@@ -2,12 +2,14 @@
   <div class="container">
     <transition-group name="list" tag="ul" class="todo-list">
       <li
-        v-for="(todoItem, index) in this.$store.state.todo_items"
-        :key="todoItem"
+        v-for="(todoItem, index) in storeTodoItems"
+        :key="index"
         :class="{ completedTodoItem: todoItem.completed }"
         class="todo-item"
       >
-        <span class="check-box" v-on:click="toggleTodoItem(index)">Check</span>
+        <span class="check-box" v-on:click="checkTodoItem(todoItem, index)"
+          >Check</span
+        >
         {{ todoItem.item }}
         <button v-on:click="removeItem(todoItem, index)">remove</button>
       </li>
@@ -17,12 +19,17 @@
 
 <script>
 export default {
+  computed: {
+    storeTodoItems() {
+      return this.$store.state.todo_items;
+    },
+  },
   methods: {
     removeItem(todoItem, index) {
-      this.$emit("removeTodoItem", todoItem, index);
+      this.$store.commit("removeTodoItem", { todoItem, index });
     },
-    toggleTodoItem(index) {
-      this.$emit("checkTodoItem", index);
+    checkTodoItem(todoItem, index) {
+      this.$store.commit("checkTodoItem", { todoItem, index });
     },
   },
 };

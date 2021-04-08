@@ -11,7 +11,7 @@
         Add
       </button>
     </div>
-    <modal v-if="showModal" @close="showModal = false">
+    <modal v-if="show_modal" @close="show_modal = false">
       <h4 slot="body">Type something</h4>
     </modal>
   </div>
@@ -26,21 +26,17 @@ export default {
   data() {
     return {
       todo_input: "",
-      showModal: false,
+      show_modal: false,
     };
   },
   methods: {
     addTodoItem() {
       if (this.todo_input !== "") {
-        const obj = { completed: false, item: this.todo_input };
-        this.$store.commit("addTodoItem", obj);
-        this.clearInput();
+        this.$store.commit("addTodoItem", this.todo_input);
+        this.todo_input = "";
       } else {
-        alert("type something");
+        this.show_modal = true;
       }
-    },
-    clearInput() {
-      this.todo_input = "";
     },
   },
 };

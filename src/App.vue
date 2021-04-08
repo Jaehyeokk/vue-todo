@@ -2,10 +2,7 @@
   <div id="app-todo">
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
-    <TodoList
-      v-on:removeTodoItem="removeTodoItem"
-      v-on:checkTodoItem="checkTodoItem"
-    ></TodoList>
+    <TodoList></TodoList>
     <TodoFooter v-on:clearItems="clearItems"></TodoFooter>
   </div>
 </template>
@@ -33,21 +30,9 @@ export default {
     };
   },
   methods: {
-    removeTodoItem(todoItem, index) {
-      localStorage.removeItem(todoItem.item);
-      this.todo_items.splice(index, 1);
-    },
-    checkTodoItem(index) {
-      this.todo_items[index].completed = !this.todo_items[index].completed;
-      localStorage.removeItem(this.todo_items[index]);
-      localStorage.setItem(
-        this.todo_items[index],
-        JSON.stringify(this.todo_items[index])
-      );
-    },
     clearItems() {
       localStorage.clear();
-      this.todo_items = [];
+      this.$store.state.todo_items = [];
     },
   },
 };
