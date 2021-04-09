@@ -3,7 +3,7 @@
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
     <TodoList></TodoList>
-    <TodoFooter v-on:clearItems="clearItems"></TodoFooter>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -23,17 +23,6 @@ export default {
     TodoInput,
     TodoList,
     TodoFooter,
-  },
-  data() {
-    return {
-      todo_items: [],
-    };
-  },
-  methods: {
-    clearItems() {
-      localStorage.clear();
-      this.$store.state.todo_items = [];
-    },
   },
 };
 </script>

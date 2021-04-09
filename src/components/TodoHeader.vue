@@ -5,17 +5,14 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-  .todo-header {
-    padding: 10px 0;
-    text-align: center;
-    color: #333;
-    border-bottom: 1px solid #ccc;
-  }
-
+.todo-header {
+  padding: 10px 0;
+  text-align: center;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+}
 </style>

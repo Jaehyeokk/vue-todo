@@ -7,11 +7,12 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   methods: {
-    clearItems() {
-      this.$emit("clearItems");
-    },
+    ...mapMutations({
+      clearItems: "clearItems",
+    }),
   },
 };
 </script>

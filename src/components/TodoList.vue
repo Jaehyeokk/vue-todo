@@ -2,35 +2,34 @@
   <div class="container">
     <transition-group name="list" tag="ul" class="todo-list">
       <li
-        v-for="(todoItem, index) in storeTodoItems"
+        v-for="(todoItem, index) in todoItems"
         :key="index"
         :class="{ completedTodoItem: todoItem.completed }"
         class="todo-item"
       >
-        <span class="check-box" v-on:click="checkTodoItem(todoItem, index)"
+        <span class="check-box" v-on:click="checkTodoItem({ todoItem, index })"
           >Check</span
         >
         {{ todoItem.item }}
-        <button v-on:click="removeItem(todoItem, index)">remove</button>
+        <button v-on:click="removeItem({ todoItem, index })">remove</button>
       </li>
     </transition-group>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 export default {
   computed: {
-    storeTodoItems() {
-      return this.$store.state.todo_items;
-    },
+    ...mapGetters({
+      todoItems: "todoItems",
+    }),
   },
   methods: {
-    removeItem(todoItem, index) {
-      this.$store.commit("removeTodoItem", { todoItem, index });
-    },
-    checkTodoItem(todoItem, index) {
-      this.$store.commit("checkTodoItem", { todoItem, index });
-    },
+    ...mapMutations({
+      removeItem: "removeTodoItem",
+      checkTodoItem: "checkTodoItem",
+    }),
   },
 };
 </script>
