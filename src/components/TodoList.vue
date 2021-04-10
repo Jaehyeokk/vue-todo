@@ -3,7 +3,7 @@
     <transition-group name="list" tag="ul" class="todo-list">
       <li
         v-for="(todoItem, index) in todoItems"
-        :key="index"
+        :key="todoItem + index"
         :class="{ completedTodoItem: todoItem.completed }"
         class="todo-item"
       >
