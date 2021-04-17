@@ -3,14 +3,10 @@
     <div class="container">
       <ul class="todo-list">
         <li class="todo-list-item">
-          <span class="check-btn">ㅁ</span>
-          <p class="todo-text">투두리스트</p>
-          <span class="remove-btn">ㅂ</span>
-        </li>
-        <li class="todo-list-item">
-          <span class="check-btn">ㅁ</span>
-          <p class="todo-text">투두리스트</p>
-          <span class="remove-btn">ㅂ</span>
+          <el-checkbox v-model="checked" style="color: #eaf1fb;"
+            >투두리스트</el-checkbox
+          >
+          <span class="remove-btn"><i class="el-icon-delete"></i></span>
         </li>
       </ul>
     </div>
@@ -29,24 +25,21 @@ export default {};
 }
 
 .todo-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   margin-bottom: 10px;
   font-weight: 500;
   font-size: 15px;
-  color: #fff;
+  color: #eaf1fb;
 }
 
-.check-btn {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
 .todo-text {
   padding: 0 20px;
 }
 .remove-btn {
-  position: absolute;
-  right: 0;
-  top: 0;
+  color: #c0c4cc;
+  cursor: pointer;
 }
 </style>

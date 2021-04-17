@@ -29,11 +29,40 @@
 }
 .todo-date .el-input__inner {
   border: none;
-  background-color: #3b424a;
+  background-color: #353a40;
 }
 
 /* Todo-input */
 .todo-input .el-input__inner {
   border: none;
+  color: #eaf1fb;
+  background-color: #353a40;
+}
+
+.todo-input .el-input__inner::placeholder {
+  color: #6d747c;
+}
+
+/* Todo-list */
+.todo-list .el-checkbox__label {
+  color: #eaf1fb;
+}
+.todo-list .el-checkbox__inner {
+  border: 1px solid #353a40;
+  background-color: #353a40;
+}
+.todo-list .el-checkbox__inner::after {
+  border-color: #ca6891;
+}
+
+.todo-list .el-checkbox__input.is-checked + .el-checkbox__label {
+  color: #6d747c;
+  text-decoration: line-through;
+}
+.todo-list .el-checkbox__inner:hover,
+.todo-list .el-checkbox__input.is-focus .el-checkbox__inner,
+.todo-list .el-checkbox__input.is-checked .el-checkbox__inner,
+.todo-list .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  border-color: #353a40;
   background-color: #353a40;
 }

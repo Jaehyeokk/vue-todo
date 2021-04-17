@@ -20,7 +20,10 @@ export default {};
 }
 .clear-btn {
   padding: 10px;
+  border: 1px solid #353a40;
   border-radius: 10px;
-  background-color: #eee;
+  color: #c0c4cc;
+  background-color: #353a40;
+  cursor: pointer;
 }
 </style>

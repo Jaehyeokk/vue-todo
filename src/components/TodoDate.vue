@@ -5,7 +5,7 @@
         <el-date-picker
           v-if="this.pick_day"
           v-model="date_day"
-          type="dates"
+          type="date"
           placeholder="Pick a date"
         >
         </el-date-picker>
@@ -61,10 +61,12 @@ export default {
 }
 .container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 30px 0;
 }
 .date-picker {
-  width: 150px;
+  border: 1px solid #363d45;
+  border-radius: 20px;
+  background-color: #363d45;
 }
 </style>
