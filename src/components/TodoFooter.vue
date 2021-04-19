@@ -1,13 +1,19 @@
 <template>
   <div class="todo-footer">
     <div class="container">
-      <span class="clear-btn">Clear All</span>
+      <span class="clear-btn" @click="clearAll">Clear All</span>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    clearAll() {
+      this.$emit("clearAll");
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -2,7 +2,11 @@
   <div class="todo-input">
     <div class="container">
       <div class="input">
-        <el-input placeholder="Please input" v-model="input"></el-input>
+        <el-input
+          placeholder="Please input"
+          v-model="todo_input"
+          @keyup.enter.native="handleInput"
+        ></el-input>
       </div>
     </div>
   </div>
@@ -10,10 +14,24 @@
 
 <script>
 export default {
+  props: ["propsDate"],
   data() {
     return {
-      input: "",
+      todo_input: "",
     };
+  },
+  methods: {
+    handleInput() {
+      if (this.propsDate === "") {
+        alert("Please select Date");
+      } else {
+        if (this.todo_input === "") {
+          alert("Input something");
+        }
+        this.$emit("emitTodoInput", this.todo_input);
+        this.todo_input = "";
+      }
+    },
   },
 };
 </script>

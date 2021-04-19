@@ -1,10 +1,10 @@
 <template>
   <div class="todo-app">
-    <TodoHeader></TodoHeader>
-    <TodoDate></TodoDate>
-    <TodoInput></TodoInput>
-    <TodoList></TodoList>
-    <TodoFooter></TodoFooter>
+    <TodoHeader @emitActiveTab="getActiveTab"></TodoHeader>
+    <TodoDate :propsActiveTab="this.active_tab" @emitDate="getDate"></TodoDate>
+    <TodoInput :propsDate="this.date" @emitTodoInput="getTodoInput"></TodoInput>
+    <TodoList :propsTodo="this.todo_items" @removeTodo="removeTodo"></TodoList>
+    <TodoFooter @clearAll="clearAll"></TodoFooter>
   </div>
 </template>
 
@@ -29,8 +29,47 @@ export default {
     TodoList,
     TodoFooter,
   },
+  created() {
+    if (localStorage.length > 0) {
+      for (let i = 0; i < localStorage.length; i++)
+        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
+          this.todo_items.push(
+            JSON.parse(localStorage.getItem(localStorage.key(i)))
+          );
+        }
+    }
+  },
   data() {
-    return {};
+    return {
+      active_tab: "day",
+      date: "",
+      todo_items: [],
+    };
+  },
+  methods: {
+    getActiveTab(tab) {
+      this.active_tab = tab;
+    },
+    getDate(date) {
+      this.date = date;
+    },
+    getTodoInput(input) {
+      const obj = {
+        date: this.date,
+        checked: false,
+        todo_item: input,
+      };
+      localStorage.setItem(obj.todo_item, JSON.stringify(obj));
+      this.todo_items.push(obj);
+    },
+    removeTodo(payload) {
+      localStorage.removeItem(payload.obj.todo_item);
+      this.todo_items.splice(payload.index, 1);
+    },
+    clearAll() {
+      localStorage.clear();
+      this.todo_items = [];
+    },
   },
 };
 </script>

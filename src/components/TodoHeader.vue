@@ -1,7 +1,7 @@
 <template>
   <div class="todo-header">
     <div class="container">
-      <el-tabs v-model="active_name" @tab-click="handleClick">
+      <el-tabs v-model="active_tab" @tab-click="handleTab">
         <el-tab-pane label="Day" name="day"></el-tab-pane>
         <el-tab-pane label="Week" name="week"></el-tab-pane>
         <el-tab-pane label="Month" name="month"></el-tab-pane>
@@ -15,11 +15,13 @@
 export default {
   data() {
     return {
-      active_name: "day",
+      active_tab: "day",
     };
   },
   methods: {
-    handleClick() {},
+    handleTab() {
+      this.$emit("emitActiveTab", this.active_tab);
+    },
   },
 };
 </script>

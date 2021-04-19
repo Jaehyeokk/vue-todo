@@ -2,11 +2,17 @@
   <div class="todo-list">
     <div class="container">
       <ul class="todo-list">
-        <li class="todo-list-item">
-          <el-checkbox v-model="checked" style="color: #eaf1fb;"
-            >투두리스트</el-checkbox
-          >
-          <span class="remove-btn"><i class="el-icon-delete"></i></span>
+        <li
+          v-for="(todo_item, index) in propsTodo"
+          :key="index"
+          class="todo-list-item"
+        >
+          <el-checkbox v-model="todo_item.checked" style="color: #eaf1fb;">{{
+            todo_item.todo_item
+          }}</el-checkbox>
+          <span class="remove-btn" @click="removeTodo(todo_item, index)"
+            ><i class="el-icon-delete"></i
+          ></span>
         </li>
       </ul>
     </div>
@@ -14,7 +20,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["propsTodo"],
+  methods: {
+    removeTodo(obj, index) {
+      const payload = { obj, index };
+      this.$emit("removeTodo", payload);
+    },
+  },
+};
 </script>
 
 <style scoped>
