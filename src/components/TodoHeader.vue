@@ -18,12 +18,13 @@ export default {
       active_tab: "day",
     };
   },
+  mounted() {
+    this.handleTab();
+  },
   methods: {
     handleTab() {
-      this.$emit("emitActiveTab", this.active_tab);
+      this.$store.commit("selectTab", this.active_tab);
     },
   },
 };
 </script>
-
-<style scoped></style>

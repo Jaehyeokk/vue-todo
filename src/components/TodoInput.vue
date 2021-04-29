@@ -13,22 +13,25 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  props: ["propsDate"],
   data() {
     return {
       todo_input: "",
     };
   },
+  computed: {
+    ...mapState(["date"]),
+  },
   methods: {
     handleInput() {
-      if (this.propsDate === "") {
+      if (this.date === "") {
         alert("Please select Date");
       } else {
         if (this.todo_input === "") {
           alert("Input something");
         }
-        this.$emit("emitTodoInput", this.todo_input);
+        this.$store.commit("addTodoItem", this.todo_input);
         this.todo_input = "";
       }
     },

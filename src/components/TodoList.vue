@@ -3,7 +3,7 @@
     <div class="container">
       <ul class="todo-list">
         <li
-          v-for="(todo_item, index) in propsTodo"
+          v-for="(todo_item, index) in todo_items"
           :key="index"
           class="todo-list-item"
         >
@@ -20,8 +20,11 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  props: ["propsTodo"],
+  computed: {
+    ...mapState(["todo_items"]),
+  },
   methods: {
     removeTodo(obj, index) {
       const payload = { obj, index };
