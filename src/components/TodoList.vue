@@ -3,14 +3,14 @@
     <div class="container">
       <ul class="todo-list">
         <li
-          v-for="(todo_item, index) in todo_items"
+          v-for="(todo_item, index) in getTodoItems"
           :key="index"
           class="todo-list-item"
         >
           <el-checkbox v-model="todo_item.checked" style="color: #eaf1fb;">{{
             todo_item.todo_item
           }}</el-checkbox>
-          <span class="remove-btn" @click="removeTodo(todo_item, index)"
+          <span class="remove-btn" @click="removeTodo({ todo_item, index })"
             ><i class="el-icon-delete"></i
           ></span>
         </li>
@@ -20,15 +20,14 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapState(["todo_items"]),
+    ...mapGetters(["getTodoItems"]),
   },
   methods: {
-    removeTodo(obj, index) {
-      const payload = { obj, index };
-      this.$emit("removeTodo", payload);
+    removeTodo(obj) {
+      this.$store.commit("removeTodoItem", obj);
     },
   },
 };

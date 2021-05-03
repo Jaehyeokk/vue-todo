@@ -21,6 +21,11 @@ export const store = new Vuex.Store({
     date: "",
     todo_items: fetchItems(),
   },
+  getters: {
+    getTodoItems(state) {
+      return state.todo_items;
+    },
+  },
   mutations: {
     selectTab(state, tab) {
       state.active_tab = tab;
@@ -35,7 +40,15 @@ export const store = new Vuex.Store({
         todo_item: input,
       };
       localStorage.setItem(obj.todo_item, JSON.stringify(obj));
-      this.todo_items.push(obj);
+      state.todo_items.push(obj);
+    },
+    removeTodoItem(state, payload) {
+      localStorage.removeItem(payload.todo_item.todo_item);
+      state.todo_items.splice(payload.index, 1);
+    },
+    removeAllItems(state) {
+      localStorage.clear();
+      state.todo_items = [];
     },
   },
 });

@@ -29,16 +29,6 @@ export default {
     TodoList,
     TodoFooter,
   },
-  methods: {
-    removeTodo(payload) {
-      localStorage.removeItem(payload.obj.todo_item);
-      this.todo_items.splice(payload.index, 1);
-    },
-    clearAll() {
-      localStorage.clear();
-      this.todo_items = [];
-    },
-  },
 };
 </script>
 
