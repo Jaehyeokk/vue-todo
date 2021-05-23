@@ -2,21 +2,27 @@
   <div class="todo-header">
     <div class="container">
       <el-tabs v-model="active_tab" @tab-click="handleTab">
-        <el-tab-pane label="Day" name="day"></el-tab-pane>
-        <el-tab-pane label="Week" name="week"></el-tab-pane>
-        <el-tab-pane label="Month" name="month"></el-tab-pane>
-        <el-tab-pane label="Year" name="year"></el-tab-pane>
+        <el-tab-pane
+          v-for="tab in date_tabs"
+          :key="tab"
+          :label="tab"
+          :name="tab"
+        ></el-tab-pane>
       </el-tabs>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      active_tab: "day",
+      active_tab: "Day",
     };
+  },
+  computed: {
+    ...mapState(["date_tabs"]),
   },
   mounted() {
     this.handleTab();

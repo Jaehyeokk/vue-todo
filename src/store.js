@@ -17,6 +17,7 @@ const fetchItems = () => {
 
 export const store = new Vuex.Store({
   state: {
+    date_tabs: ["Day", "Week", "Month", "Year"],
     active_tab: "",
     date: "",
     todo_items: fetchItems(),
