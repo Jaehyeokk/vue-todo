@@ -1,50 +1,61 @@
 <template>
-  <div class="container">
-    <transition-group name="list" tag="ul" class="todo-list">
-      <li
-        v-for="(todoItem, index) in todoItems"
-        :key="todoItem + index"
-        :class="{ completedTodoItem: todoItem.completed }"
-        class="todo-item"
-      >
-        <span class="check-box" v-on:click="checkTodoItem({ todoItem, index })"
-          >Check</span
+  <div class="todo-list">
+    <div class="container">
+      <ul class="todo-list">
+        <li
+          v-for="(todo_item, index) in getTodoItems"
+          :key="index"
+          class="todo-list-item"
         >
-        {{ todoItem.item }}
-        <button v-on:click="removeItem({ todoItem, index })">remove</button>
-      </li>
-    </transition-group>
+          <el-checkbox v-model="todo_item.checked" style="color: #eaf1fb;">{{
+            todo_item.todo_item
+          }}</el-checkbox>
+          <span class="remove-btn" @click="removeTodo({ todo_item, index })"
+            ><i class="el-icon-delete"></i
+          ></span>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters({
-      todoItems: "todoItems",
-    }),
+    ...mapGetters(["getTodoItems"]),
   },
   methods: {
-    ...mapMutations({
-      removeItem: "removeTodoItem",
-      checkTodoItem: "checkTodoItem",
-    }),
+    removeTodo(obj) {
+      this.$store.commit("removeTodoItem", obj);
+    },
   },
 };
 </script>
 
-<style>
-.completedTodoItem {
-  text-decoration: line-through;
+<style scoped>
+.container {
+  width: 80%;
+  min-height: 200px;
+  margin: 0 auto;
 }
-.list-enter-active,
-.list-leave-active {
-  transition: all 1s;
+
+.todo-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #eaf1fb;
 }
-.list-enter,
-.list-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
+
+.todo-text {
+  padding: 0 20px;
+}
+.remove-btn {
+  color: #c0c4cc;
+  cursor: pointer;
 }
 </style>

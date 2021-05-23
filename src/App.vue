@@ -1,6 +1,7 @@
 <template>
-  <div id="app-todo">
+  <div class="todo-app">
     <TodoHeader></TodoHeader>
+    <TodoDate></TodoDate>
     <TodoInput></TodoInput>
     <TodoList></TodoList>
     <TodoFooter></TodoFooter>
@@ -8,18 +9,22 @@
 </template>
 
 <script>
+// CSS
 import "./assets/css/reset.css";
 import "./assets/css/common.css";
-
+import "element-ui/lib/theme-chalk/index.css";
+import "./assets/css/element-ui.css";
+// Components
 import TodoHeader from "./components/TodoHeader";
+import TodoDate from "./components/TodoDate";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import TodoFooter from "./components/TodoFooter";
-
 export default {
   name: "app",
   components: {
     TodoHeader,
+    TodoDate,
     TodoInput,
     TodoList,
     TodoFooter,
@@ -28,11 +33,9 @@ export default {
 </script>
 
 <style scoped>
-#app-todo {
-  max-width: 600px;
-  margin: 100px auto 0 auto;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  background-color: #eee;
+.todo-app {
+  width: 360px;
+  border-radius: 5px;
+  background-color: #3b424a;
 }
 </style>

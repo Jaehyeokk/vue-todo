@@ -1,41 +1,38 @@
 <template>
-  <div class="container">
-    <div class="todo-input-wrap">
-      <input
-        class="todo-input"
-        type="text"
-        v-model="todo_input"
-        v-on:keyup.enter="addTodoItem"
-      />
-      <button class="todo-input-btn" v-on:click="addTodoItem">
-        Add
-      </button>
+  <div class="todo-input">
+    <div class="container">
+      <div class="input">
+        <el-input
+          placeholder="Please input"
+          v-model="todo_input"
+          @keyup.enter.native="handleInput"
+        ></el-input>
+      </div>
     </div>
-    <modal v-if="show_modal" @close="show_modal = false">
-      <h4 slot="body">Type something</h4>
-    </modal>
   </div>
 </template>
 
 <script>
-import Modal from "./common/Modal";
+import { mapState } from "vuex";
 export default {
-  components: {
-    Modal: Modal,
-  },
   data() {
     return {
       todo_input: "",
-      show_modal: false,
     };
   },
+  computed: {
+    ...mapState(["date"]),
+  },
   methods: {
-    addTodoItem() {
-      if (this.todo_input !== "") {
+    handleInput() {
+      if (this.date === "") {
+        alert("Please select Date");
+      } else {
+        if (this.todo_input === "") {
+          alert("Input something");
+        }
         this.$store.commit("addTodoItem", this.todo_input);
         this.todo_input = "";
-      } else {
-        this.show_modal = true;
       }
     },
   },
@@ -43,30 +40,9 @@ export default {
 </script>
 
 <style scoped>
-.todo-input-wrap {
-  position: relative;
-  width: 100%;
-}
-.todo-input {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 30px;
-  padding: 0 20px;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  box-sizing: border-box;
-}
-.todo-input-btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 80px;
-  height: 30px;
-  border: none;
-  border-radius: 20px;
-  background-color: #bbb;
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 30px;
 }
 </style>

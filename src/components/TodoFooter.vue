@@ -1,8 +1,8 @@
 <template>
-  <div class="todo-footer-wrap container">
-    <button class="clear-all-btn" type="button" v-on:click="clearItems">
-      Clear All
-    </button>
+  <div class="todo-footer">
+    <div class="container">
+      <span class="clear-btn" @click="clearAll">Clear All</span>
+    </div>
   </div>
 </template>
 
@@ -10,19 +10,27 @@
 import { mapMutations } from "vuex";
 export default {
   methods: {
-    ...mapMutations({
-      clearItems: "clearItems",
-    }),
+    clearAll() {
+      this.$store.commit("removeAllItems");
+    },
   },
 };
 </script>
 
-<style>
-.todo-footer-wrap {
-  width: 300px;
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  padding: 20px 0;
   margin: 0 auto;
 }
-.clear-all-btn {
-  width: 100%;
+.clear-btn {
+  padding: 10px;
+  border: 1px solid #353a40;
+  border-radius: 10px;
+  color: #c0c4cc;
+  background-color: #353a40;
+  cursor: pointer;
 }
 </style>
