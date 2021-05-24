@@ -4,7 +4,6 @@
       <div class="date-picker">
         <el-date-picker
           v-model="s_date"
-          :default-value="c_today"
           :type="active_tab === 'Day' ? 'date' : active_tab.toLowerCase()"
           :placeholder="`Pick a ${active_tab.toLowerCase()}`"
           @change="handleDate"
@@ -30,9 +29,14 @@ export default {
       return today;
     },
   },
+  mounted() {
+    this.s_date = this.c_today;
+  },
   methods: {
     handleDate() {
       this.$store.commit("selectDate", this.s_date);
+      console.log(this.s_date);
+      console.log(this.c_today);
     },
   },
 };
