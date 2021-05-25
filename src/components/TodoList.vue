@@ -3,7 +3,7 @@
     <div class="container">
       <ul class="todo-list">
         <li
-          v-for="(todo_item, index) in getTodoItems"
+          v-for="(todo_item, index) in cs_todoItems"
           :key="index"
           class="todo-list-item"
         >
@@ -20,10 +20,15 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import _ from "lodash";
+import { mapGetters, mapState } from "vuex";
 export default {
   computed: {
     ...mapGetters(["getTodoItems"]),
+    ...mapState(["date"]),
+    cs_todoItems() {
+      return _.filter(this.getTodoItems, { date: this.date });
+    },
   },
   methods: {
     removeTodo(obj) {

@@ -23,20 +23,14 @@ export default {
     };
   },
   computed: {
-    ...mapState(["active_tab"]),
-    c_today() {
-      const today = new Date();
-      return today;
-    },
+    ...mapState(["active_tab", "date"]),
   },
   mounted() {
-    this.s_date = this.c_today;
+    this.s_date = this.date;
   },
   methods: {
     handleDate() {
       this.$store.commit("selectDate", this.s_date);
-      console.log(this.s_date);
-      console.log(this.c_today);
     },
   },
 };
