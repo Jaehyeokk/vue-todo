@@ -36,6 +36,7 @@ export const store = new Vuex.Store({
     },
     addTodoItem(state, input) {
       const obj = {
+        date_unit: state.active_tab,
         date: state.date,
         checked: false,
         todo_item: input,

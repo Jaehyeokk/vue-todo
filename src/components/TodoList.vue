@@ -25,9 +25,13 @@ import { mapGetters, mapState } from "vuex";
 export default {
   computed: {
     ...mapGetters(["getTodoItems"]),
-    ...mapState(["date"]),
+    ...mapState(["date", "active_tab"]),
     cs_todoItems() {
-      return _.filter(this.getTodoItems, { date: this.date });
+      const filteredDateUnit = _.filter(this.getTodoItems, {
+        date_unit: this.active_tab,
+      });
+      const filteredDate = _.filter(filteredDateUnit, { date: this.date });
+      return filteredDate;
     },
   },
   methods: {
