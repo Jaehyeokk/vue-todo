@@ -26,10 +26,6 @@ export default {
   computed: {
     ...mapState(["active_tab", "date"]),
   },
-  created() {
-    const formatting_today = this.$moment(new Date()).format("YYYY-MM-DD");
-    this.$store.commit("selectDate", formatting_today);
-  },
   mounted() {
     this.s_date = this.date;
   },

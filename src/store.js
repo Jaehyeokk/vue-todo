@@ -26,7 +26,6 @@ export const store = new Vuex.Store({
     getTodoItems(state) {
       return state.todo_items;
     },
-    getToday() {},
   },
   mutations: {
     selectTab(state, tab) {
