@@ -19,13 +19,14 @@ export const store = new Vuex.Store({
   state: {
     date_tabs: ["Day", "Week", "Month", "Year"],
     active_tab: "",
-    date: new Date(),
+    date: "",
     todo_items: fetchItems(),
   },
   getters: {
     getTodoItems(state) {
       return state.todo_items;
     },
+    getToday() {},
   },
   mutations: {
     selectTab(state, tab) {

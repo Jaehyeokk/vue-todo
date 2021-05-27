@@ -7,6 +7,7 @@
           :type="active_tab === 'Day' ? 'date' : active_tab.toLowerCase()"
           :placeholder="`Pick a ${active_tab.toLowerCase()}`"
           @change="handleDate"
+          value-format="yyyy-MM-dd"
         >
         </el-date-picker>
       </div>
@@ -24,6 +25,10 @@ export default {
   },
   computed: {
     ...mapState(["active_tab", "date"]),
+  },
+  created() {
+    const formatting_today = this.$moment(new Date()).format("YYYY-MM-DD");
+    this.$store.commit("selectDate", formatting_today);
   },
   mounted() {
     this.s_date = this.date;
