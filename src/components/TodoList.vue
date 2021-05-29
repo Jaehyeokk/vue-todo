@@ -1,7 +1,7 @@
 <template>
   <div class="todo-list">
     <div class="container">
-      <ul class="todo-list">
+      <PerfectScrollbar tag="ul" class="todo-list">
         <li
           v-for="(todo_item, index) in cs_todoItems"
           :key="index"
@@ -14,15 +14,20 @@
             ><i class="el-icon-delete"></i
           ></span>
         </li>
-      </ul>
+      </PerfectScrollbar>
     </div>
   </div>
 </template>
 
 <script>
+import { PerfectScrollbar } from "vue2-perfect-scrollbar";
 import _ from "lodash";
 import { mapGetters, mapState } from "vuex";
+import "vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css";
 export default {
+  components: {
+    PerfectScrollbar,
+  },
   computed: {
     ...mapGetters(["getTodoItems"]),
     ...mapState(["date", "active_tab"]),
@@ -47,6 +52,10 @@ export default {
   width: 80%;
   min-height: 200px;
   margin: 0 auto;
+}
+
+.ps {
+  height: 200px;
 }
 
 .todo-list-item {

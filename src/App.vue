@@ -35,6 +35,8 @@ export default {
 <style scoped>
 .todo-app {
   width: 360px;
+  height: 100vh;
+  margin: 0 auto;
   border-radius: 5px;
   background-color: #3b424a;
 }
