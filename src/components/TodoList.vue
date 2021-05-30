@@ -2,18 +2,20 @@
   <div class="todo-list">
     <div class="container">
       <PerfectScrollbar tag="ul" class="todo-list">
-        <li
-          v-for="(todo_item, index) in cs_todoItems"
-          :key="index"
-          class="todo-list-item"
-        >
-          <el-checkbox v-model="todo_item.checked" style="color: #eaf1fb;">{{
-            todo_item.todo_item
-          }}</el-checkbox>
-          <span class="remove-btn" @click="removeTodo({ todo_item, index })"
-            ><i class="el-icon-delete"></i
-          ></span>
-        </li>
+        <transition-group name="list" tag="ul" class="todo-list">
+          <li
+            v-for="(todo_item, index) in cs_todoItems"
+            :key="index + todo_item.date"
+            class="todo-list-item"
+          >
+            <el-checkbox v-model="todo_item.checked" style="color: #eaf1fb;">{{
+              todo_item.todo_item
+            }}</el-checkbox>
+            <span class="remove-btn" @click="removeTodo({ todo_item, index })"
+              ><i class="el-icon-delete"></i
+            ></span>
+          </li>
+        </transition-group>
       </PerfectScrollbar>
     </div>
   </div>
@@ -75,5 +77,14 @@ export default {
 .remove-btn {
   color: #c0c4cc;
   cursor: pointer;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
