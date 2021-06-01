@@ -1,5 +1,6 @@
 <template>
   <div class="todo-app">
+    <TodoWeather></TodoWeather>
     <TodoHeader></TodoHeader>
     <TodoDate></TodoDate>
     <TodoInput></TodoInput>
@@ -15,6 +16,7 @@ import "./assets/css/common.css";
 import "element-ui/lib/theme-chalk/index.css";
 import "./assets/css/element-ui.css";
 // Components
+import TodoWeather from "./components/TodoWeather";
 import TodoHeader from "./components/TodoHeader";
 import TodoDate from "./components/TodoDate";
 import TodoInput from "./components/TodoInput";
@@ -23,6 +25,7 @@ import TodoFooter from "./components/TodoFooter";
 export default {
   name: "app",
   components: {
+    TodoWeather,
     TodoHeader,
     TodoDate,
     TodoInput,
