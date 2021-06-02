@@ -1,7 +1,23 @@
 <template>
   <div class="todo-weather">
     <div class="container">
-      {{ this.weather_info }}
+      <p class="weather-img-wrap">
+        <img
+          :src="
+            `http://openweathermap.org/img/w/${this.weather_info.weather[0].icon}.png`
+          "
+          alt=""
+        />
+        <span class="weather-temp"
+          >{{ Math.floor(this.weather_info.main.temp - 273) }}&#8451;</span
+        >
+      </p>
+      <p class="weather-city">
+        {{ this.weather_info.name }}, {{ this.weather_info.sys.country }}
+      </p>
+      <p class="weather-temp-desc">
+        {{ this.weather_info.weather[0].description }}
+      </p>
     </div>
   </div>
 </template>
@@ -49,4 +65,33 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.todo-weather {
+  padding: 10px 0;
+  text-align: right;
+}
+
+.todo-weather p {
+  padding: 3px 0;
+  color: #eaf1fb;
+}
+
+.container {
+  width: 80%;
+  min-height: 100px;
+  margin: 0 auto;
+}
+.weather-title {
+}
+.weather-img-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.weather-temp {
+  padding-left: 10px;
+  font-size: 27px;
+}
+.todo-weather {
+}
+</style>
