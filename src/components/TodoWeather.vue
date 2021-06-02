@@ -1,7 +1,7 @@
 <template>
   <div class="todo-weather">
     <div class="container">
-      {{ this.fetched_weather }}
+      {{ this.weather_info }}
     </div>
   </div>
 </template>
@@ -10,24 +10,36 @@
 import axios from "axios";
 export default {
   created() {
-    this.fetchWeather();
+    this.getCurrentLocationWeather();
   },
   data() {
     return {
-      fetched_weather: "",
+      weather_info: "",
     };
   },
   methods: {
-    fetchWeather() {
-      const city_name = "Seoul,KR";
-      const API_key = "";
+    getCurrentLocationWeather() {
+      const success = (position) => {
+        const {
+          coords: { latitude: lat, longitude: lon },
+        } = position;
+        this.fetchWeather(lat, lon);
+      };
+
+      const fail = () => {
+        console.log("fail");
+      };
+
+      navigator.geolocation.getCurrentPosition(success, fail);
+    },
+    fetchWeather(lat, lon) {
+      const API_KEY = "8a1afe376ff8ec3b259be2ea83f17c60";
       axios
         .get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${API_key}`
+          `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
         )
         .then(({ data }) => {
-          this.fetched_weather = data;
-          console.log(data);
+          this.weather_info = data;
         })
         .catch((err) => {
           console.log(err);
