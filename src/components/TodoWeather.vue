@@ -81,8 +81,7 @@ export default {
   min-height: 100px;
   margin: 0 auto;
 }
-.weather-title {
-}
+
 .weather-img-wrap {
   display: flex;
   justify-content: flex-end;
@@ -91,7 +90,5 @@ export default {
 .weather-temp {
   padding-left: 10px;
   font-size: 27px;
-}
-.todo-weather {
 }
 </style>
