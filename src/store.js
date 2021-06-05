@@ -21,6 +21,7 @@ export const store = new Vuex.Store({
     active_tab: "",
     date: "",
     todo_items: fetchItems(),
+    todo_item_seq: null,
   },
   getters: {
     getTodoItems(state) {
@@ -35,17 +36,22 @@ export const store = new Vuex.Store({
       state.date = date;
     },
     addTodoItem(state, input) {
+      state.todo_item_seq = localStorage.getItem("todo_item_seq");
+      state.todo_item_seq++;
       const obj = {
+        seq: state.todo_item_seq,
         date_unit: state.active_tab,
         date: state.date,
         checked: false,
         todo_item: input,
       };
-      localStorage.setItem(obj.todo_item, JSON.stringify(obj));
+      localStorage.removeItem("todo_item_seq");
+      localStorage.setItem("todo_item_seq", state.todo_item_seq);
+      localStorage.setItem(state.todo_item_seq, JSON.stringify(obj));
       state.todo_items.push(obj);
     },
     removeTodoItem(state, payload) {
-      localStorage.removeItem(payload.todo_item.todo_item);
+      localStorage.removeItem(payload.todo_item.seq);
       state.todo_items.splice(payload.index, 1);
     },
     removeAllItems(state) {

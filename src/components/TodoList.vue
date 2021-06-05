@@ -5,7 +5,7 @@
         <transition-group name="list" tag="ul" class="todo-list">
           <li
             v-for="(todo_item, index) in cs_todoItems"
-            :key="index + todo_item.date"
+            :key="todo_item.seq"
             class="todo-list-item"
           >
             <el-checkbox v-model="todo_item.checked" style="color: #eaf1fb;">{{
@@ -58,6 +58,10 @@ export default {
 
 .ps {
   height: 200px;
+}
+
+.todo-list {
+  padding-right: 5px;
 }
 
 .todo-list-item {
