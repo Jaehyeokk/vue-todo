@@ -50,6 +50,16 @@ export const store = new Vuex.Store({
       localStorage.setItem(state.todo_item_seq, JSON.stringify(obj));
       state.todo_items.push(obj);
     },
+    editTodoItem(state, payload) {
+      localStorage.removeItem(payload.obj.todo_item.seq);
+      state.todo_items.splice(payload.obj.index, 1);
+
+      localStorage.setItem(
+        payload.obj.todo_item.seq,
+        JSON.stringify(payload.new_obj)
+      );
+      state.todo_items.splice(payload.obj.index, 0, payload.new_obj);
+    },
     removeTodoItem(state, payload) {
       localStorage.removeItem(payload.todo_item.seq);
       state.todo_items.splice(payload.index, 1);

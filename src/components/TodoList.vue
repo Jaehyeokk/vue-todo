@@ -11,9 +11,23 @@
             <el-checkbox v-model="todo_item.checked" style="color: #eaf1fb;">{{
               todo_item.todo_item
             }}</el-checkbox>
-            <span class="remove-btn" @click="removeTodo({ todo_item, index })"
-              ><i class="el-icon-delete"></i
-            ></span>
+            <div class="btns-wrap">
+              <span
+                class="edit-btn"
+                @click="clickEditBtn({ todo_item, index })"
+              >
+                <i class="el-icon-edit"></i>
+              </span>
+              <span class="remove-btn" @click="removeTodo({ todo_item, index })"
+                ><i class="el-icon-delete"></i
+              ></span>
+            </div>
+            <input
+              class="edit-input"
+              type="text"
+              :value="todo_item.todo_item"
+              @keyup.enter="editTodo({ todo_item, index })"
+            />
           </li>
         </transition-group>
       </PerfectScrollbar>
@@ -30,6 +44,11 @@ export default {
   components: {
     PerfectScrollbar,
   },
+  data() {
+    return {
+      edit_input: "",
+    };
+  },
   computed: {
     ...mapGetters(["getTodoItems"]),
     ...mapState(["date", "active_tab"]),
@@ -42,6 +61,30 @@ export default {
     },
   },
   methods: {
+    clickEditBtn(obj) {
+      // Vue.js 에서의 정확한 DOM 접근 다시 생각해보기
+      const todo_items = document.querySelectorAll(".edit-input");
+      const edit_item = todo_items[obj.index];
+      for (const item of todo_items) {
+        item.style.display = "none";
+      }
+      edit_item.style.display = "block";
+      edit_item.innerText = obj.todo_item.todo_item;
+    },
+    editTodo(obj) {
+      const todo_items = document.querySelectorAll(".edit-input");
+      const edit_item = todo_items[obj.index];
+      const new_item = edit_item.value;
+      const new_obj = {
+        seq: obj.todo_item.seq,
+        date_unit: obj.todo_item.date_unit,
+        date: obj.todo_item.date,
+        checked: obj.todo_item.checked,
+        todo_item: new_item,
+      };
+      this.$store.commit("editTodoItem", { obj, new_obj });
+      edit_item.style.display = "none";
+    },
     removeTodo(obj) {
       this.$store.commit("removeTodoItem", obj);
     },
@@ -78,14 +121,38 @@ export default {
 .todo-text {
   padding: 0 20px;
 }
+
+.edit-btn {
+  cursor: pointer;
+  color: #c0c4cc;
+}
+
+.edit-input {
+  display: none;
+  z-index: 99;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 5px 10px;
+  background-color: #353a40;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  outline: none;
+}
+
 .remove-btn {
+  margin-left: 10px;
   color: #c0c4cc;
   cursor: pointer;
 }
+
 .list-enter-active,
 .list-leave-active {
   transition: all 1s;
 }
+
 .list-enter,
 .list-leave-to {
   opacity: 0;
