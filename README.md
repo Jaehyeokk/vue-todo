@@ -1,6 +1,6 @@
 ## 🔗 Demo
 
-[Todo app link](https://jaehyeokk.github.io/vue-todo/)
+[<img src="src/assets/images/mockup-todo.png" alt="데모 사이트 바로가기" target="_blank">](https://jaehyeokk.github.io/vue-todo/)
 
 <br />
 
