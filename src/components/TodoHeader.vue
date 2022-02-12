@@ -14,15 +14,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 export default {
 	data() {
 		return {
+			date_tabs: ['Day', 'Week', 'Month', 'Year'],
 			active_tab: 'Day',
 		};
-	},
-	computed: {
-		...mapState(['date_tabs']),
 	},
 	mounted() {
 		this.handleTab();

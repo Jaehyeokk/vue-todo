@@ -4,19 +4,28 @@
 			<p class="weather-img-wrap">
 				<img
 					:src="
-						`http://openweathermap.org/img/w/${this.weather_info.weather[0].icon}.png`
+						this.weather_info
+							? `http://openweathermap.org/img/w/${this.weather_info.weather[0].icon}.png`
+							: null
 					"
 					alt=""
 				/>
 				<span class="weather-temp"
-					>{{ Math.floor(this.weather_info.main.temp - 273) }}&#8451;</span
+					>{{
+						this.weather_info
+							? Math.floor(this.weather_info.main.temp - 273)
+							: null
+					}}&#8451;</span
 				>
 			</p>
 			<p class="weather-city">
-				{{ this.weather_info.name }}, {{ this.weather_info.sys.country }}
+				{{ this.weather_info.name }},
+				{{ this.weather_info ? this.weather_info.sys.country : null }}
 			</p>
 			<p class="weather-temp-desc">
-				{{ this.weather_info.weather[0].description }}
+				{{
+					this.weather_info ? this.weather_info.weather[0].description : null
+				}}
 			</p>
 		</div>
 	</div>
@@ -25,8 +34,8 @@
 <script>
 import axios from 'axios';
 export default {
-	created() {
-		this.getCurrentLocationWeather();
+	async created() {
+		await this.getCurrentLocationWeather();
 	},
 	data() {
 		return {
@@ -54,11 +63,13 @@ export default {
 				.get(
 					`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
 				)
-				.then(({ data }) => {
-					this.weather_info = data;
+				.then(res => {
+					this.weather_info = res.data;
+					return res;
 				})
 				.catch(err => {
 					console.log(err);
+					throw err;
 				});
 		},
 	},

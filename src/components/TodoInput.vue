@@ -26,10 +26,10 @@ export default {
 	methods: {
 		handleInput() {
 			if (this.date === '') {
-				alert('Please select Date');
+				return alert('Please select Date');
 			} else {
 				if (this.todo_input === '') {
-					alert('Input something');
+					return alert('Input something');
 				}
 				this.$store.commit('addTodoItem', this.todo_input);
 				this.todo_input = '';
