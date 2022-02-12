@@ -8,7 +8,7 @@
 						:key="todo_item.seq"
 						class="todo-list-item"
 					>
-						<el-checkbox v-model="todo_item.checked" style="color: #eaf1fb;">{{
+						<el-checkbox v-model="todo_item.checked" style="color: #eaf1fb">{{
 							todo_item.todo_item
 						}}</el-checkbox>
 						<div class="btns-wrap">
@@ -35,20 +35,25 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import { PerfectScrollbar } from 'vue2-perfect-scrollbar';
 import _ from 'lodash';
 import { mapGetters, mapState } from 'vuex';
 import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css';
-export default {
+import { PayloadObj } from '@/store/mutations';
+
+export default Vue.extend({
 	components: {
 		PerfectScrollbar,
 	},
+
 	data() {
 		return {
 			edit_input: '',
 		};
 	},
+
 	computed: {
 		...mapGetters(['getTodoItems']),
 		...mapState(['date', 'active_tab']),
@@ -60,36 +65,35 @@ export default {
 			return filteredDate;
 		},
 	},
+
 	methods: {
-		clickEditBtn(obj) {
+		clickEditBtn(obj: PayloadObj) {
 			// Vue.js 에서의 정확한 DOM 접근 다시 생각해보기
 			const todo_items = document.querySelectorAll('.edit-input');
-			const edit_item = todo_items[obj.index];
+			const edit_item = todo_items[obj.index] as HTMLInputElement;
 			for (const item of todo_items) {
-				item.style.display = 'none';
+				const typed = item as HTMLInputElement;
+				typed.style.display = 'none';
 			}
 			edit_item.style.display = 'block';
 			edit_item.innerText = obj.todo_item.todo_item;
 		},
-		editTodo(obj) {
+		editTodo(obj: PayloadObj) {
 			const todo_items = document.querySelectorAll('.edit-input');
-			const edit_item = todo_items[obj.index];
+			const edit_item = todo_items[obj.index] as HTMLInputElement;
 			const new_item = edit_item.value;
 			const new_obj = {
-				seq: obj.todo_item.seq,
-				date_unit: obj.todo_item.date_unit,
-				date: obj.todo_item.date,
-				checked: obj.todo_item.checked,
+				...obj.todo_item,
 				todo_item: new_item,
 			};
 			this.$store.commit('editTodoItem', { obj, new_obj });
 			edit_item.style.display = 'none';
 		},
-		removeTodo(obj) {
+		removeTodo(obj: PayloadObj) {
 			this.$store.commit('removeTodoItem', obj);
 		},
 	},
-};
+});
 </script>
 
 <style scoped>

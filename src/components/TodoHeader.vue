@@ -13,21 +13,24 @@
 	</div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+export default Vue.extend({
 	data() {
 		return {
 			date_tabs: ['Day', 'Week', 'Month', 'Year'],
 			active_tab: 'Day',
 		};
 	},
-	mounted() {
-		this.handleTab();
-	},
+
 	methods: {
 		handleTab() {
 			this.$store.commit('selectTab', this.active_tab);
 		},
 	},
-};
+
+	mounted() {
+		this.handleTab();
+	},
+});
 </script>

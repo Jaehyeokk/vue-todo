@@ -12,6 +12,8 @@
 
 ## 🎁 Packages
 
+✔️ TypeScript
+
 ✔️ Vuex
 
 ✔️ Vue-Router

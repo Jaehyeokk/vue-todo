@@ -9,20 +9,20 @@
 	</div>
 </template>
 
-<script>
-// CSS
+<script lang="ts">
+import Vue from 'vue';
 import '@/assets/css/reset.css';
 import '@/assets/css/common.css';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/css/element-ui.css';
-// Components
-import TodoWeather from '@/components/TodoWeather';
-import TodoHeader from '@/components/TodoHeader';
-import TodoDate from '@/components/TodoDate';
-import TodoInput from '@/components/TodoInput';
-import TodoList from '@/components/TodoList';
-import TodoFooter from '@/components/TodoFooter';
-export default {
+import TodoWeather from '@/components/TodoWeather.vue';
+import TodoHeader from '@/components/TodoHeader.vue';
+import TodoDate from '@/components/TodoDate.vue';
+import TodoInput from '@/components/TodoInput.vue';
+import TodoList from '@/components/TodoList.vue';
+import TodoFooter from '@/components/TodoFooter.vue';
+
+export default Vue.extend({
 	name: 'app',
 	components: {
 		TodoWeather,
@@ -32,7 +32,7 @@ export default {
 		TodoList,
 		TodoFooter,
 	},
-};
+});
 </script>
 
 <style scoped>

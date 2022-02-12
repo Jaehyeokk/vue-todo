@@ -6,14 +6,15 @@
 	</div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+export default Vue.extend({
 	methods: {
 		clearAll() {
 			this.$store.commit('removeAllItems');
 		},
 	},
-};
+});
 </script>
 
 <style scoped>

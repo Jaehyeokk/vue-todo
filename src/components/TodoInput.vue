@@ -12,9 +12,11 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import { mapState } from 'vuex';
-export default {
+
+export default Vue.extend({
 	data() {
 		return {
 			todo_input: '',
@@ -36,7 +38,7 @@ export default {
 			}
 		},
 	},
-};
+});
 </script>
 
 <style scoped>

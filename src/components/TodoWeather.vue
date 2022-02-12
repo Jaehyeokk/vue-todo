@@ -31,20 +31,20 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import axios from 'axios';
-export default {
-	async created() {
-		await this.getCurrentLocationWeather();
-	},
+
+export default Vue.extend({
 	data() {
 		return {
 			weather_info: '',
 		};
 	},
+
 	methods: {
 		getCurrentLocationWeather() {
-			const success = position => {
+			const success = (position: any) => {
 				const {
 					coords: { latitude: lat, longitude: lon },
 				} = position;
@@ -57,7 +57,7 @@ export default {
 
 			navigator.geolocation.getCurrentPosition(success, fail);
 		},
-		fetchWeather(lat, lon) {
+		fetchWeather(lat: any, lon: any) {
 			const API_KEY = '8a1afe376ff8ec3b259be2ea83f17c60';
 			axios
 				.get(
@@ -73,7 +73,11 @@ export default {
 				});
 		},
 	},
-};
+
+	async created() {
+		await this.getCurrentLocationWeather();
+	},
+});
 </script>
 
 <style scoped>

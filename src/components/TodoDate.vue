@@ -15,26 +15,31 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import { mapState } from 'vuex';
-export default {
+
+export default Vue.extend({
 	data() {
 		return {
 			s_date: '',
 		};
 	},
+
 	computed: {
 		...mapState(['active_tab', 'date']),
 	},
-	mounted() {
-		this.s_date = this.date;
-	},
+
 	methods: {
 		handleDate() {
 			this.$store.commit('selectDate', this.s_date);
 		},
 	},
-};
+
+	mounted() {
+		this.s_date = this.date;
+	},
+});
 </script>
 
 <style scoped>
