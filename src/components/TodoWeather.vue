@@ -61,7 +61,7 @@ export default Vue.extend({
 			const API_KEY = '8a1afe376ff8ec3b259be2ea83f17c60';
 			axios
 				.get(
-					`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
+					`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
 				)
 				.then(res => {
 					this.weather_info = res.data;
